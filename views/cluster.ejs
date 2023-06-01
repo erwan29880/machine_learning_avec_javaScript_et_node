@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/cluster.js" defer></script>
+    <script src="js/utils.js" defer></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1>Machine learning</h1>
+
+        <div class="row">
+
+            <h2>Clustering : les fleurs d'iris</h2>
+
+            <p>
+                Il y a trois variétés d'iris ; les données pour tenter de les classifier concernent longueur, largeur des pétales et des sépales. 
+                Le programme ci-dessous utilise un algorithme d'apprentissage non-supervisé 
+                (quand les données ne sont pas labellisées) de clustering afin d'apprendre à segmenter les données selon trois variétés. 
+                L'affichage graphique utilise la réduction de dimensionnalité (PCA) afin de visualiser les espèces. 
+                Les sépales sont en abscisse, les pétales en ordonnée.
+            </p>
+
+            <p>Kmeans :</p>
+
+            <button type="button" id="kmeans" class="btn btn-primary">relancer l'apprentissage !</button>
+        </div>
+
+        <div class="row">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="centrer">
+                    <canvas id="myChartPie"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6" id="hider">
+                <p class="pad">
+                    Le jeu de données comprend 50 observations par espèce d'iris. Le clustering 
+                    peut être plus ou moins pertinent selon le placement aléatoire des centres des clusters
+                    par l'algorithme. Pour une utilisation rapide, le nombre d'itérations de l'algorithme n'est pas très élevé.
+                </p>
+        
+                <p>
+                    Avec un paramétrage de l'algorithme différent, les résultats seraient sans doute plus homogènes !
+                </p>
+        </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="iris">
+        <img src="images/iris.png" alt="iris">
+    </div>
+
+    <div class="retour">
+        <a href="/"><img src="images/retour.jpg" alt="retour accueil"></a>
+    </div>
+
+</body>
+</html>

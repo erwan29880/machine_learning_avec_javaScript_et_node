@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/iris.js" defer></script>
+    <script src="js/utils.js" defer></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1>Machine learning</h1>
+
+        <div class="row">
+
+            <h2>classification : les fleurs d'iris</h2>
+
+            <p>Il y a trois variétés d'iris ; les données pour tenter de les classifier concernent longueur, largeur des pétales et des sépales. 
+                Le programme ci-dessous utilise un algorithme basé sur des arbres de décisions afin d'apprendre à classer les iris selon les trois variétés. 
+                Si la diagonale rouge de la matrice de confusion est bien remplie, l'apprentissage est bon. L'apprentissage ne donne pas les mêmes résultats
+            à chaque fois, en effet la matrice de confusion est calculée sur les données de test extraites de façon aléatoire avant l'apprentissage !</p>
+
+            <p>decision tree :</p>
+
+            <button type="button" id="decisionTree" class="btn btn-primary">lancer l'apprentissage avec des arbres de décisions</button>
+
+
+            <div class="col-md-6" id="parentMdc">
+                <div id="tableauMatriceDeConfusion"></div>
+            </div>
+            <div id="metricsTree" class="col-md-6"></div>
+        </div>
+    </div>
+
+
+    <div class="iris">
+        <img src="images/iris.png" alt="iris">
+    </div>
+    <div class="retour">
+        <a href="/"><img src="images/retour.jpg" alt="retour accueil"></a>
+    </div>
+
+</body>
+</html>
