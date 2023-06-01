@@ -32,3 +32,7 @@ exports.getCluster =  (req, res, next) => {
         next();
     });
 };
+
+exports.digits = (req, res) => {
+    res.render('digits');
+}

@@ -7,5 +7,6 @@ router.get('/tree', controller.tree);
 router.get('/treeGet', controller.getTree);
 router.get('/cluster', controller.clusterPage);
 router.get('/clusterGet', controller.getCluster);
+router.get('/digits', controller.digits);
 
 module.exports = router

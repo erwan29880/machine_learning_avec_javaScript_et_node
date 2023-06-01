@@ -1,0 +1,43 @@
+body {
+    width: 100%;
+    background-image: url('/images/mnist.png');
+}
+
+h1 {
+    margin-bottom: 80px;
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    opacity: 0.88;
+    border-radius: 5px;
+}
+
+.canvasDigitConteneur {
+    width: 302px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.canvasDigitConteneur button {
+    width: 149px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    opacity: 0.88;
+}
+
+.canvasDigitConteneur button:hover {
+    background-color: rgb(24, 22, 20);
+}
+
+.result {
+    width: 300px;
+    text-align: center;
+    border: 1px solid black;
+    min-height: 20px;
+    background-color: black;
+    color: white;
+    opacity: 0.88;
+    border-radius: 5px;
+}

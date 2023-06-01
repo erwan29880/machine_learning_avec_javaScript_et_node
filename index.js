@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const routes = require('./router/routes')
+const tf = require('@tensorflow/tfjs');
 
 const port = 8080;
  
