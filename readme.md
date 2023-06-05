@@ -53,7 +53,7 @@ Prédiction de la consommation électrique en France d'après les données en op
 npm install
 ```
 
-## effectuer les test  
+## effectuer les tests 
 
 ```bash
 npm run test
