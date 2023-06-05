@@ -8,6 +8,10 @@ class Metrics {
      - TP, FP, TN, FN
     */
 
+    /**
+     * @param {array} yTrue 
+     * @param {array} prediction 
+     */
     constructor(yTrue, prediction) {
         this.yTrue = yTrue;
         this.prediction = prediction;
@@ -55,7 +59,7 @@ class Metrics {
      */
     sepClasse(y, p, classe) {
         const ym = [];
-        const pm = []
+        const pm = [];
         for (let i = 0; i < y.length ; i++) {
             if (y[i] === classe) ym.push(1);
             if (y[i] !== classe) ym.push(0); 

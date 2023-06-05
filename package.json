@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha index.test.js"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "nodemon": "^2.0.22",
     "pca-js": "^1.0.2",
     "scikitjs": "^1.24.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }

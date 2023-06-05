@@ -1,10 +1,19 @@
 # Machine learning avec javaScript ! 
 
-Les modèles sont entraînés avec nodeJs (Express), les prédictions se font en back-end.  
+Cette application web montre des utilisations possibles, simples, de l'intelligence artificielle avec javaScript. Les technologies suivantes sont utilisées :   
 
-Les bibliothèques javaScript utilisées : 
-- Scikit Js 
-- TensorflowJs
+- NodeJs  
+- express  
+- mocha (pour les tests en back-end)  
+- scikitJs  
+- tensorflowJs  
+- pca-js  
+- ejs (pour le templating front-end)
+
+Les modèles avec scikitJs sont utilisés en back-end, ceux avec tensorFlowJs sont utilisés en front-end.  
+
+Les cas d'usages sont décrits ci-dessous.  
+
 
 ## Arbres de décision
 
@@ -44,7 +53,18 @@ Prédiction de la consommation électrique en France d'après les données en op
 npm install
 ```
 
-Le site est disponible à l'adresse suivante :
+## effectuer les test  
+
+```bash
+npm run test
+```  
+
+## lancement du serveur  
+
+```bash
+nodemon index.js
+```
+L'application est disponible à l'adresse suivante :
 
 > http://localhost:8080/
 

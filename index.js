@@ -15,14 +15,10 @@ app.listen(port, () => {
     console.log(`app listening on port ${port} !`)
 });
 
-
-const tf = require('@tensorflow/tfjs');
-const sk = require('scikitjs');
-const engie = require('./ml/timeserie')
-
-// ts = new engie();
-// ts.getData().then(res => console.log(res))
-
-
-
-
+const kmeans = require("./ml/metricsIris");
+const yTrue = [0, 1, 2, 0, 1, 2, 0, 1, 2];
+const yPred = [0, 0, 0, 1, 1, 1, 2, 2, 2];
+const nbLabels = 3;
+cl = new kmeans(yTrue, yPred);
+const res = cl.perfMesurement(yTrue, yPred);
+console.log(res)
