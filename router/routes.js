@@ -8,5 +8,7 @@ router.get('/treeGet', controller.getTree);
 router.get('/cluster', controller.clusterPage);
 router.get('/clusterGet', controller.getCluster);
 router.get('/digits', controller.digits);
+router.get('/timeserie', controller.engie);
+router.get('/timeserieGet', controller.engieGet);
 
 module.exports = router

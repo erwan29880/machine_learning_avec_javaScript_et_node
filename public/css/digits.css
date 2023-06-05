@@ -41,3 +41,17 @@ h1 {
     opacity: 0.88;
     border-radius: 5px;
 }
+
+
+.retour {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+.retour img {
+    width: 80px;
+    height: 80px;
+}
+.retour:hover {
+    border: 1px solid black;
+}

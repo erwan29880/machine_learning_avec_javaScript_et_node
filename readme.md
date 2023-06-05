@@ -27,7 +27,15 @@ Un canvas html permet de tester le modèle : écrire un chiffre avec la souris e
 
 ![digit](./public/images/digits.png)
 
-* j'ai entraîné ce modèle from scratch en python avec TensorFlow-keras. Il est ensuite converti au format TensorflowJs. Ce modèle peut être librement partagé. L'accuracy sur les données de test est de 96%, sur les données d'entraînement de 98%. Precision et Recall n'ont pas été évalués. La matrice de confusion n'a pas été calculée.
+* j'ai entraîné ce modèle from scratch en python avec TensorFlow-keras. Il est ensuite converti au format TensorflowJs. Ce modèle peut être librement partagé. L'accuracy sur les données de test est de 96%, sur les données d'entraînement de 98%. Precision et Recall n'ont pas été évalués. La matrice de confusion n'a pas été calculée.  
+
+
+## prédiction de série temporelle
+
+Prédiction de la consommation électrique en France d'après les données en opendata d'Engie. Ce modèle est entraîné en python, la prédiction se fait côté front-end avec TensorflowJs. Le modèle utilisé est un réseau de neurones récurrent.
+
+![digit](./public/images/engieGraph.png)
+
 
 
 ## installation  

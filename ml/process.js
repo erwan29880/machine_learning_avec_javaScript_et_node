@@ -9,11 +9,11 @@ class DataProcess{
     
     /**
      * 
-     * @param {object} data
-     * @param {bool} scale 
-     * @param {bool} shuf 
-     * @param {bool} split 
-     * @param {float} splitSize 
+     * @param {object} data le fichier json
+     * @param {bool} scale  mise à l'échelle des données ou non
+     * @param {bool} shuf   mélanger ou non les données
+     * @param {bool} split  créer un train/test split
+     * @param {float} splitSize taille du jeu de données de test
      * 
      */
     constructor(data, scale, shuf, trainTest, splitSize){
@@ -31,31 +31,7 @@ class DataProcess{
         this.labelsDictInv = {};
     }
 
-    /**
-     * returns {Object} 
-     */
-    getPrepData() {
-        this.featuresLabels();
-        let data;
-        if (this.scale === true) this.stats();
-        this.ordEncoder();
-        if (this.shuf === true) this.shuffle();
-        if (this.trainTest === true) {
-            data = this.splitData();
-        } else {
-            data = {
-                features: this.features,
-                labels: this.labels
-            }
-        }
-        return data;
-    }
 
-    getDict() {
-        return this.labelsDictInv;
-    }
-
- 
     /**
      * mise en listes des features et des labels
      */
@@ -73,57 +49,107 @@ class DataProcess{
 
 
     /**
+     * returns {Object} 
+     */
+    getPrepData() {
+        this.featuresLabels();
+        let data;
+
+        //scale or not
+        if (this.scale === true) this.stats();
+        
+        // encoder les variables de la target en numérique
+        this.ordEncoder();
+
+        // shuffle or not
+        if (this.shuf === true) this.shuffle();
+        
+        // train test split or not
+        if (this.trainTest === true) {
+            data = this.splitData();
+        } else {
+            data = {
+                features: this.features,
+                labels: this.labels
+            }
+        }
+
+        return data;
+    }
+
+
+    getDict() {
+        return this.labelsDictInv;
+    }
+
+
+    /**
      * train test
-     * @params {float} pct entre 0 et 1 
+     * @params {float} pct entre 0 et 1 taille du test set
      */
     splitData() {
-        const nbr = parseInt(this.features.length * this.splitSize) 
+        // calcul de la taille du set en fonction du nombre de données total
+        const nbr = parseInt(this.features.length * this.splitSize);
+        
+        // séparation
         const xTrain = this.features.slice(0, this.features.length - nbr);
         const yTrain = this.labels.slice(0, this.features.length - nbr);
         const xTest = this.features.slice(-nbr, this.features.length);
         const yTest = this.labels.slice(-nbr, this.features.length);
-        const data = {
+        
+        return {
             "Xtrain" : xTrain,
             "Xtest" : xTest,
             "Ytrain" : yTrain,
             "Ytest" : yTest
         }
-        return data;
     }
 
     /**
      * mélange les données
      */
     shuffle() {
+        // index random
         const nbr = this.data.length;
         let index = Array.from(Array(nbr).keys())
         index = index.sort(() => Math.random() - 0.5);
 
+        // mélange selon l'index créé
         const provArray = [];
         const provArray2 = [];
         for (let i = 0; i < index.length ; i++) {
             provArray.push(this.features[index[i]]);
             provArray2.push(this.labels[index[i]]);
         }
+
         this.features = provArray;
         this.labels = provArray2;
     }
+
 
     /**
      * ordinal encoder
      */
     ordEncoder() {
         if (typeof this.labels[0] === "string") {
+
+            // get unique labels
             let uniques = [...new Set(this.labels)];
+            
+            // création des objets label => numéro
             for (let i = 0; i< uniques.length ; i++) {
+                // transform
                 this.labelsDict[uniques[i]] = i;
+                // inverse transform
                 this.labelsDictInv[i] = uniques[i];
             }
             
+            // transformation
             const provArray = []
             for (let item of this.labels) {
                 provArray.push(this.labelsDict[item]);
             }
+
             this.labels = provArray;
         } 
     }
@@ -135,15 +161,17 @@ class DataProcess{
      * @returns {void}
      */
     stats() {
+        // traitement des données par colonne
         for (let i = 0; i < this.features[0].length; i++) {
             let provArray = [];
             for (let j = 0; j< this.features.length ; j++) {
                 provArray.push(parseFloat(this.features[j][i]));
             }
+
             // min et max
             this.byCol[i]  = provArray;
-            this.minMax["minmax"+i] =  [Math.min(...provArray), Math.max(...provArray)];
-            this.minMax["moyenne"+i] = ( provArray.reduce((sommePartielle, a) => sommePartielle + a) ) / provArray.length;
+            this.minMax["minmax" + i] =  [Math.min(...provArray), Math.max(...provArray)];
+            this.minMax["moyenne" + i] = (provArray.reduce((sommePartielle, a) => sommePartielle + a)) / provArray.length;
         
             // std
             let partialSum = 0;

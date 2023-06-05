@@ -16,21 +16,28 @@ class Tree extends dataProcess{
     */
 
     constructor() {
+        // récupérer les données de la classe parente
         super(iris, true, true, true, 0.2);
         this.data = super.getPrepData();
         this.labs = super.getDict();
+
+        // instanciation modèle sans hyperparamétrage
         this.model = new sk.DecisionTreeClassifier();
+
         this.prediction;
     }
     
+
     /**
      * 
      * @returns {Object}
      */
     async run() {
+        // ml
         this.fit();
         this.predict();
-                
+        
+        // calcul et récupération des métriques -> /ml/fichier metricsIris.js
         const metrique = new metriqueIris(this.data.Ytest, this.prediction);
         const metrics = metrique.precisionRecall();
         let conf = metrique.confusionMatrix();
@@ -38,20 +45,22 @@ class Tree extends dataProcess{
             conf = val;
         });
         
-        const data = {
+
+        return {
             prediction: this.prediction,
             reel: this.data.Ytest,
             matriceDeConfusion: conf,
             metrics: metrics, 
             labels: this.labs
         };
-        return data;
     }
+
 
     fit() {
         this.model.fit(this.data.Xtrain, this.data.Ytrain);
     }
 
+    
     predict() {
         this.prediction = this.model.predict(this.data.Xtest);   
     }

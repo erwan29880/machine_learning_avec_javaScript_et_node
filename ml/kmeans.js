@@ -15,15 +15,19 @@ class Cluster extends dataProcess{
     */
 
     constructor() {
-        super(iris, false, true, false, 0);
+        //récupération des données de la classe parents
+        super(iris, false, true, false, 0);  
         this.data = super.getPrepData();
         this.labs = super.getDict();
+
+        // instanciation modèle
         this.model = new sk.KMeans({
             nClusters: 3, 
             nInit: 200,
             maxIter: 600,
             randomState: 1234
         });
+
         this.prediction;
         this.sepals = [];
         this.petals = [];
@@ -31,12 +35,18 @@ class Cluster extends dataProcess{
         this.counter = [0, 0, 0];
     }
     
+    /**
+     * 
+     * @returns {object} prédictions, nombre de classe par prédiction
+     */
     async run() {
         let data;
 
+        // ml
         this.fit();
         this.predict();
-        
+
+        // mise en forme
         await this.prediction.array()
         .then(val => {
             this.prediction = val;
@@ -70,6 +80,8 @@ class Cluster extends dataProcess{
 
     /**
      * PCA for petals and sepals, for plotting
+     * longueur et largeur sépale transformée en coordonnée x
+     * longueur et largeur pétale transformée en coordonnée y 
      */
     pca() {
         let vectors = pca.getEigenVectors(this.sepals);
@@ -99,7 +111,10 @@ class Cluster extends dataProcess{
                 x: this.sepals[i],
                 y: this.petals[i]
             };
+
             const test = parseInt(prediction[i]);
+            
+            // séparation des prédictions
             if (test == 0) {
                 data1.push(dic);
                 this.counter[0]++;

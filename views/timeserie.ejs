@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- <script src="js/utils.js" defer></script> -->
+    <script src="/js/timeserie.js" defer></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1 class="h1Centrer">Prédiction de comsommation électrique en france</h1>
+
+        <div class="row">
+            <p>
+                Les données d'Engie (EDF) de 1981 à 2012 sont disponibles en open data. Les données de consommation mensuelles pour le thermique, l'éolien, 
+                le nucléaire, l'hydro et le pompage y sont consignées en giga watt par heure (GWH).
+            </p>
+
+            <p>
+                Le modèle formé apprend sur les consommations passées afin d'estimer le total en GWH de la consommation électrique pour les deux années suivantes.
+            </p>
+
+            <p>Le modèle utilisé est un réseau de neurones récurrents, il capte bien la tendance de la série temporelle, ainsi que sa saisonnalité. Il apprend à prédire en 
+                'one shot' 24 données correspondant à 24 mois.<br>
+                Ces modèles sont
+                bien adaptés aux problèmes de régression non linéaire, pour différents cas de prédiction énonomiques : gestion de stocks, prédiction de récoltes etc.
+            </p>
+        </div>
+
+        <div class="row">
+            <button id="ml">prédire</button>
+        </div>
+
+        <div class="row">
+            <canvas id="myChart"></canvas>
+        </div>
+
+    </div>
+
+
+    <div class="retour">
+        <a href="/"><img src="images/retour.jpg" alt="retour accueil"></a>
+    </div>
+
+</body>
+</html>
