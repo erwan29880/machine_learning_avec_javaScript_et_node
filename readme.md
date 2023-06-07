@@ -45,7 +45,15 @@ Prédiction de la consommation électrique en France d'après les données en op
 
 ![digit](./public/images/engieGraph.png)
 
+## régressions linéaire, non linéaire  
 
+Une page sur les régression avec TensorflowJs, avec expérience utilisateur qui permet de modifier le nombre de variables, le nombre de données, l'optimiseur, la fonction d'activation de la couche cachée du réseau de neurones, le nombre d'epochs, et permet d'effectuer une transformation polynomiale des données.   
+
+L'affichage grapqhique se fait alors avec ChartJs, comprenant une réduction de dimensionnalité (PCA) afin de pouvoir avoir un affichage en 2d.
+
+![regression](./public/images/regressionPage.png)  
+
+J'ai écrit les classes scaler et polynomialFeatures, la classe PCA est issue du package npm pca-js écrit par Bitan Nath, et simplement copié pour une utilisation front-end. 
 
 ## installation  
 

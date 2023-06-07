@@ -72,12 +72,56 @@ div{
     top: 30%;
 }
 
-/* ancienne page train */
-/* .h1Centrer {
+/* page regression */
+.h1Centrer {
     text-align: center;
 }
 
 .divScrollable {
     overflow-y: scroll; 
-    height:300px;    
-} */
+    height:150px;    
+    padding-left: 20px;
+    border: 1px solid black;
+    box-shadow: 10px 5px 5px rgb(222, 211, 211);
+    border-radius: 6px 0px 0px 6px;
+}
+
+.espaceBas {
+    margin-bottom: 40px;
+}
+
+.espaceHaut {
+    margin-top: 50px;
+}
+
+.reg label {
+    font-style: italic;
+}
+
+.reg select {
+    float: right;
+    margin-right: 50px;
+    width: 100px;
+}
+
+.centerDivReg {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.sepReg {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.imRegG {
+    width: 100px;
+    /* float: rigth;
+    margin-right: 20px; */
+}
+.imRegD {
+    width: 100px;
+    /* float: left;
+    margin-left: 20px; */
+}

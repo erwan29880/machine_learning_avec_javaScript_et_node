@@ -5,6 +5,8 @@ const iris = require('./datasets/iris.json');
 const treeTest = require('./ml/tree');
 const kmeansTest = require('./ml/kmeans');
 const metricsTest = require('./ml/metricsIris');
+const scaler = require('./ml/scaler');
+const poly = require('./ml/polynomialFeatures');
 
 
 describe("tests de la classe timeserie", () => {

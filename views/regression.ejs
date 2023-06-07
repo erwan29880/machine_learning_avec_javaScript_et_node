@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="/js/scaler.js" defer></script>
+    <script src="/js/polynomial.js" defer></script>
+    <script src="/js/pca.js" defer></script>
+    <script src="/js/regression.js" defer></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1 class="h1Centrer">Régressions : apprentissages et prédictions</h1>
+
+        <div class="row espaceHaut">
+            <p>
+                La régression consiste à trouver une moyenne acceptable en fonction de différentes variables. La régression linéaire 
+                est une fonction affine. <br>
+                Les réseaux de neurones permettent d'apprendre des régression non linéaires ; choisissez alors l'activation "relu".
+                La transformation polynomiale permet aussi d'avoir une régression non linéaire. Jouez avec les différents paramètres !
+            </p>
+
+
+            <div class="centerDivReg">
+                <img src="images/reg1.png" class="imRegG" alt="">
+                <span class="sepReg"> &#x2794; </span>
+                <img src="images/reg2.png" class="imRegD" alt="">
+            </div>
+            
+
+            <p>
+                L'initialisation des variables est aléatoire. La variable à prédire est la variable "feature" 
+                (ou sa moyenne si il y a plusieurs variables) au carré à laquelle est ajoutée un biais.
+            </p>
+
+            <p>
+                La variable "feature" serait par exemple la surface d'habitation, utilisée pour prédire le prix d'un logement.
+                Cela fonctionne de la même manière avec plusieurs variables (nombre de pièces, jardin, proximité des commerces etc), une réduction de 
+                dimensionnalité (PCA) est utilisée pour l'affichage graphique. Plus il y a d'epochs, de variables, plus l'apprentissage est long. Si il y a 
+                trop d'epochs, le modèle apprendra de façon trop spécifique sur les données en cas de régression non linéaire, et ne généralisera pas bien
+                si on lui injecte de nouvelles données.
+            </p>
+
+            <p>
+                L'apprentissage se fait uniquement coté client, et utilise donc les ressources de l'ordinateur client.
+            </p>
+        </div>
+
+        <div class="row reg">
+
+            <div class="col-md-6">
+
+                <div class="sel">
+                    <label for="nbEpochs">nombre d'itérations d'apprentissage (epochs) :</label>
+                    <select name="nbEpochs" id="nbEpochs">
+                        <% for (let i = 2; i <= 100;  i++ ) { %>
+                            <% if (i%10 == 0) { %>
+                                <% if (i == 10) { %>
+                                    <option value="<%= i %>" selected><%= i %></option>
+                                <% } else { %>  
+                                    <option value="<%= i %>"><%= i %></option> 
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="sel">
+                    <label for="nbDonnees">nombre de données :</label>
+                    <select name="nbDonnees" id="nbDonnees">
+                        <% for (let i = 50; i <= 500;  i++ ) { %>
+                            <% if (i%50 === 0) { %>
+                                <% if (i === 50) { %>
+                                    <option value="<%= i %>" selected><%= i %></option>
+                                <% } else { %>  
+                                    <option value="<%= i %>"><%= i %></option> 
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="sel">
+                    <label for="nbVariables">nombre de variables :</label>
+                    <select name="nbVariables" id="nbVariables">
+                        <option value="1" selected>1</option>
+                        <% for (let i = 2; i <= 5;  i++ ) { %>
+                                <option value="<%= i %>"><%= i %></option> 
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="sel">
+                    <label for="activation">fonction d'activation :</label>
+                    <select name="activation" id="activation">
+                        <option value="linear" selected>linéaire</option>
+                        <option value="relu">relu</option>
+                        <option value="tanh">tangente hyperbolique</option>    
+                    </select>
+                </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="sel">
+                <label for="optimizer">optimiseur :</label>
+                <select name="optimizer" id="optimizer">
+                    <option value="adam" selected>adam</option>
+                    <option value="sgd">stocastic gradient descent</option>    
+                </select>
+            </div>
+
+            <div class="sel">
+                <label for="poly">transformation polynomiale des données ou non :</label>
+                <select name="poly" id="poly">
+                    <option value="normale" selected>normale</option>
+                    <option value="polynomiale">polynomiale</option>    
+                </select>
+            </div>
+
+            <div class="sel">
+                <label for="neurones">Nombre de neurones dans la couche cachée :</label>
+                <select name="neurones" id="neurones">
+                    <% for (let i = 50; i <= 500;  i++ ) { %>
+                        <% if (i%50 === 0) { %>
+                            <% if (i === 50) { %>
+                                <option value="<%= i %>" selected><%= i %></option>
+                            <% } else { %>  
+                                <option value="<%= i %>"><%= i %></option> 
+                            <% } %>
+                        <% } %>
+                    <% } %>    
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row espaceHaut">
+        <button id="ml" class="btn btn-primary">prédire</button>
+    </div>
+
+    <div id="result" class="divScrollable"></div>
+
+    <div class="row espaceBas">
+        <canvas id="myChart"></canvas>
+    </div>
+        
+
+
+
+    <div class="retour">
+        <a href="/"><img src="images/retour.jpg" alt="retour accueil"></a>
+    </div>
+
+</body>
+</html>
