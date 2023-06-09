@@ -1,21 +1,8 @@
 const assert = require('assert').strict;
-const timeserieTest = require('./ml/timeserie');
 const processTest = require('./ml/process');
 const iris = require('./datasets/iris.json');
 const treeTest = require('./ml/tree');
-const kmeansTest = require('./ml/kmeans');
 const metricsTest = require('./ml/metricsIris');
-const scaler = require('./ml/scaler');
-const poly = require('./ml/polynomialFeatures');
-
-
-describe("tests de la classe timeserie", () => {
-    it("vérifier le chargment du fichier json", () => {
-        cl = new timeserieTest();
-        res = cl.to2dDataset();
-        assert.strictEqual(15125, res["data"][0][0]);
-    });
-});
 
 
 describe('tests de la classe process', () => {
@@ -88,43 +75,6 @@ describe("test de la classe tree", () => {
     });
 });
 
-
-describe("test de la classe kmeans", () => {
-    beforeEach(() => {
-        this.cl = new kmeansTest();
-    });
-
-    it("vérification petals sepals", () => {
-        this.cl.petalsSepals();
-        assert.strictEqual(this.cl.sepals.length, this.cl.petals.length);
-    });
-
-    it("vérification pca", () => {
-        this.cl.petalsSepals();
-        const len = this.cl.petals[0].length;
-        this.cl.pca();
-        assert.notStrictEqual(1, len);
-    });
-
-    it("test de la fonction principale", async () => {
-        return this.cl.run()
-            .then((res) => {
-                let counte = 0;
-                
-                for (let counter of res['prediction']) {
-                    counte += counter;
-                }
-
-                let x = 0;
-                for (let classe of res['data']) {
-                    for (let dict of classe) {
-                        x += 1;    
-                    }
-                }
-                assert.strictEqual(counte, x);
-            });
-    });
-});
 
 
 describe("test de la classe metrics iris", () => {

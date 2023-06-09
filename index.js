@@ -7,6 +7,7 @@ const port = 8080;
  
 app.use(express.static('public'));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/datasets', express.static(path.join(__dirname, 'datasets')));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/', routes);

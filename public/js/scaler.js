@@ -23,11 +23,6 @@ class Scaler {
      */
     scale() {
         let t1 = this.features;
-        // try {
-        //     t1 = tf.tensor2d(this.features);
-        // } catch(e) {
-        //     throw e;
-        // }
 
         // garder en mémoire min et max pour inverser l'échelle
         this.min = t1.min(0, false);

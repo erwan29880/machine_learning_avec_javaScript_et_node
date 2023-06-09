@@ -40,11 +40,32 @@ var ctx = canvas.getContext('2d');
  * @returns {object}
  */
 async function fetchData() {
-    return fetch('/timeserieGet')
+    return fetch('/datasets/engie.json')
     .then((res) => {
         return res.json();
     })
+    .then(data => to2dDataset(data))
 }
+
+
+function to2dDataset(dataset) {
+    const data = [];
+    for (let i = 0; i < dataset['1'].length; i++) {
+        data.push([
+            dataset['1'][i],
+            dataset['2'][i],
+            dataset['3'][i],
+            dataset['4'][i],
+            dataset['5'][i]
+        ]);
+    }
+    return {
+        data: data,
+        labels: dataset['6'],
+        dates: dataset['7']
+    }
+  }
+
 
 
 /**
@@ -108,6 +129,7 @@ async function invscale(y, yHat) {
  */
 async function getData() {
     const rep = await fetchData();
+    console.log(rep)
 
     // mise à l'échelle entre 0 et 1
     const data = await scale(rep['data']);
