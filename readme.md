@@ -1,5 +1,7 @@
 # Machine learning avec javaScript ! 
 
+[Démo](https://erwan-diato.com/ml/index.php)
+
 Cette application web montre des utilisations possibles, simples, de l'intelligence artificielle avec javaScript. Les technologies suivantes sont utilisées :   
 
 - NodeJs  
